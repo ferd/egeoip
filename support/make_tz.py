@@ -29,10 +29,10 @@ def main():
         usecs = (utcoffset.days * 86400) + utcoffset.seconds
         if row['region']:
             rows.append(
-                'utc_offset(#geoip{country_code = "%s", region = <<"%s">>}) -> %s' %
+                'utc_offset(#geoip{country_code = <<"%s">>, region = <<"%s">>}) -> %s' %
                 (row['country'], row['region'], usecs))
         else:
-            rows.append('utc_offset(#geoip{country_code = "%s"}) -> %s' %
+            rows.append('utc_offset(#geoip{country_code = <<"%s">>}) -> %s' %
                         (row['country'], usecs))
     rows.append('utc_offset(_) -> 0')
     print ';\n'.join(rows) + '.'
